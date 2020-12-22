@@ -7,6 +7,8 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
+router.register('profile', views.UserProfileViewSet)# no nase_name becuse its has query set included
+
 
 urlpatterns = [
     path('hello-view/', views.HelloApiView.as_view()),
