@@ -29,13 +29,15 @@ class UserProfileSerializer(serializers.ModelSerializer):
             name=validated_data['name'],
             password=validated_data['password']
         )
-
+        
         return user
 
     def update(self, instance, validated_data):
         """Handle updating user account"""
         if 'password' in validated_data:
+            print(password)
             password = validated_data.pop('password')
+            print(password)
             instance.set_password(password)
 
         return super().update(instance, validated_data)

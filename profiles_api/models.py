@@ -12,7 +12,9 @@ class UserProfileManager(BaseUserManager):
             raise ValueError('User must have an email address')
         email = self.normalize_email(email)
         user = self.model(email = email, name = name)
-
+        
+        # print("a:",password)
+        user.is_staff = True  #change by prashant for login error in Django admin 
         user.set_password(password)
         user.save(using = self._db)
         return user
@@ -39,8 +41,8 @@ class  UserProfile(AbstractBaseUser,PermissionsMixin):
 
     objects = UserProfileManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    USERNAME_FIELD = 'email' #override
+    REQUIRED_FIELDS = ['name'] #override 
 
     def get_full_name(self):
         """Retrieve full name of user"""
